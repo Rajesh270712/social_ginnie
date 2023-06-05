@@ -1,0 +1,24 @@
+.navigation-bar,
+.tool-bar {
+  background: #fff !important;
+  box-shadow: none !important;
+  height: 70px;
+  margin: 0px auto;
+  border-bottom: 1.25px solid #F7F7FB;
+}
+
+.img-box{
+img{
+
+  height: 60px;
+}
+}
+@media screen and (max-width: 480px) {
+  .navigation-bar,
+  .tool-bar {
+    svg {
+      background: #fff;
+      margin: auto;
+    }
+  }
+}

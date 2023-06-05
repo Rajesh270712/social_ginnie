@@ -1,0 +1,121 @@
+.input-field-container {
+  width: 100%;
+}
+
+.ant-input {
+  min-height: 48px;
+  border-radius: 4px;
+  height: 48px;
+  width: 100%;
+  padding: 16px 17px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ant-input:focus {
+  box-shadow: 0 0 0 0.5px var(--ant-primary-color-outline) !important
+}
+
+// .ant-input:hover {
+//   border: 1.5px solid #000000;
+// }
+
+.ant-input-affix-wrapper {
+  // padding: 16px 17px;
+  padding: 0px 16px;
+  max-height: 48px;
+  overflow: hidden;
+
+  input {
+    margin: -5px 0px;
+    // background-color: transparent;
+    // position: relative;
+    // bottom: 5px;
+    // max-height: 4px !important;
+
+    // z-index: -10;
+  }
+}
+
+// .ant-input-affix-wrapper :focus{
+//   box-shadow: 0 0 0 1px var(--insightIq-primary-color) !important;
+// }
+
+.input-icon-container {
+  margin-top: 8px; // should be same as input field margin-top
+}
+
+
+.input-label {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  color: #313544;
+
+}
+
+// .input-title {
+//   color: #8a8894;
+// }
+
+// .otp-input-chunks-container {
+//   display: flex;
+//   flex-direction: column;
+//   // flex-direction: row;
+//   // align-items: center;
+
+
+// .otp-input-fields-container {
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+// }
+
+// .otp-input-field {
+//   background: #ffffff;
+//   // border-right: 1.5px solid #e8e8f0;
+//   // border-radius: 4px 0px 0px 4px;
+//   height: 44px;
+//   width: 48px;
+//   border: none;
+// }
+
+.input-error-message {
+  color: red;
+  min-height: 10px;
+  font-weight: 500;
+}
+
+// .password-toggle-button {
+//   background-color: transparent;
+//   border: none;
+//   cursor: pointer;
+// }
+
+// .password-suggestion-tags-container {
+//   display: flex;
+//   flex-direction: row;
+//   margin-top: 8px;
+// }
+
+// .input-chunk {
+//   background: #ffffff;
+//   border: 1.5px solid #e8e8f0;
+//   border-radius: 4px;
+//   input:not(:last-child) {
+//     border-right: 1.5px solid #e8e8f0;
+//   }
+// }
+
+// .otp-label {
+//   font-weight: 500;
+//   font-size: 12px;
+
+//   color: #8a8894;
+// }
+
+.input-field-has-error {
+  border-color: #af0606;
+}

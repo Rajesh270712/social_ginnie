@@ -1,0 +1,46 @@
+.background-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  outline: none;
+  -webkit-overflow-scrolling: touch;
+  background: #E5E5E5;
+  height: 100%;
+  // background-image: url(https://images.squarespace-cdn.com/content/v1/60479868292a5d29e69ac6b9/d2f479f8-2005-43ae-bb36-e90333fa8f19/Future_of_Artificial_Intelligence.gif?format=1000w);
+  // background-size: cover;
+  // background-repeat: no-repeat;
+  // background-position: center;
+
+}
+
+
+.background-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 56px;
+  width: 450px;
+  height: 100vh;
+  background: #FFFFFF;
+  box-shadow: 0px 18px 36px -18px rgba(0, 0, 0, 0.3), 0px 30px 60px -12px rgba(50, 50, 93, 0.25);
+  border-radius: 10px;
+}
+
+.background-content a {
+  color: #00A3FF;
+}
+
+@media screen and (max-width: 630px) {
+  .background-main {
+    position: relative;
+  }
+
+  .background-content {
+    position: relative;
+    top: 0px;
+    width: 100vw;
+    height: 120vh;
+    overflow-y: scroll;
+  }
+}

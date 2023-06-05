@@ -1,0 +1,50 @@
+.intro-page-body {
+  background-color: #111827;
+  height: 1000px;
+  width: 100%;
+  font-family: Satoshi, sans-serif;
+   background-image: url("https://www.careerguide.com/career/wp-content/uploads/2021/05/connections.gif");
+  background-size: cover; /* Adjusts the size of the background image to cover the entire viewport */
+  background-repeat: no-repeat; /* Prevents the background image from repeating */
+  background-position: center; 
+
+  h1 {
+    margin-bottom: 0;
+    font-size: 50px;
+    line-height: 70px;
+    float: left;
+    color: #fff;
+    text-align: center;
+    letter-spacing: -2.4px;
+    margin: 118px auto 24px;
+    width: 100%;
+
+  }
+}
+
+.Typewriter__wrapper {
+  background-image: linear-gradient(90deg, #fb60d7, #eb69dc 15%, #dc5cff 30%, #c555fe 45%, #a02fff 60%, #7752ff 75%, #5f98fa 90%, #44beff);
+  line-height: 110px;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-size: 55px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-align: center !important;
+  margin: auto;
+  text-align: center !important;
+  width: 100% !important;
+  display: block;
+}
+
+
+.platform-main-container {
+  position: absolute;
+  bottom: 25%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 8%;
+  width: 100%;
+}
