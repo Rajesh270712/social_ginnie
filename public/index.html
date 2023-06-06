@@ -6,7 +6,7 @@
     <link rel="shortcut icon" href="phylloIcon.ico" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Connect your accounts using Phyllo." />
+    <meta name="description" content="Social Ginnie" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/phylloIcon.ico" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -18,13 +18,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
     <!-- meta tags -->
-    <meta name="title" content="Creators | Connect" />
-    <meta name="description" content="Connect your accounts using Phyllo." />
+    <meta name="title" content="Social Ginnie" />
+    <meta name="description" content="Social Ginnie" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Social Ginnie" />
     <meta property="og:url" content="https://connect-account.dev.getphyllo.com/" />
     <meta property="og:title" content="Creators | Connect" />
-    <meta property="og:description" content="Connect your accounts using Phyllo." />
+    <meta property="og:description" content="Social Ginnie" />
     <meta property="og:image" content="https://cdn.getphyllo.com/preview_images/app-connect/preview.png" />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
@@ -35,70 +35,11 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>Creators | Connect</title>
+    <title>Social Ginnie</title>
     <!-- Web Dashboard with version v2 -->
-    <script defer type="text/javascript" src="https://cdn.getphyllo.com/connect/v2/phyllo-connect.js"></script>
 
     <script>
-      /**
-       * This script is used to track analytic events on the website
-       * Token will be changes according to the environment, app is deployed in
-       */
-      !(function () {
-        var analytics = (window.analytics = window.analytics || []);
-        if (!analytics.initialize)
-          if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice.");
-          else {
-            analytics.invoked = !0;
-            analytics.methods = [
-              "trackSubmit",
-              "trackClick",
-              "trackLink",
-              "trackForm",
-              "pageview",
-              "identify",
-              "reset",
-              "group",
-              "track",
-              "ready",
-              "alias",
-              "debug",
-              "page",
-              "once",
-              "off",
-              "on",
-              "addSourceMiddleware",
-              "addIntegrationMiddleware",
-              "setAnonymousId",
-              "addDestinationMiddleware",
-            ];
-            analytics.factory = function (e) {
-              return function () {
-                var t = Array.prototype.slice.call(arguments);
-                t.unshift(e);
-                analytics.push(t);
-                return analytics;
-              };
-            };
-            for (var e = 0; e < analytics.methods.length; e++) {
-              var key = analytics.methods[e];
-              analytics[key] = analytics.factory(key);
-            }
-            analytics.load = function (key, e) {
-              var t = document.createElement("script");
-              t.type = "text/javascript";
-              t.async = !0;
-              t.src = "https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";
-              var n = document.getElementsByTagName("script")[0];
-              n.parentNode.insertBefore(t, n);
-              analytics._loadOptions = e;
-            };
-            analytics._writeKey = "%REACT_APP_ANALYTICS_SOURCE_TOKEN%%";
-            analytics.SNIPPET_VERSION = "4.15.3";
-            analytics.load("%REACT_APP_ANALYTICS_SOURCE_TOKEN%");
-            analytics.page();
-          }
-      })();
+      
     </script>
   </head>
   <body>

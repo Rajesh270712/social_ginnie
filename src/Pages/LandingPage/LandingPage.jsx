@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 import React from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Icons from "../../Components/Icons/icons";
-import { Background, ButtonWithGlyphIcon, FullScreenLoader, NavBar, PrimaryButton } from "../../Components/index";
+import { Background, ButtonWithGlyphIcon, FullScreenLoader, InvertedPrimaryButton, NavBar, PrimaryButton } from "../../Components/index";
 import InputField from "../../Components/InputField/InputField";
 import "./LandingPage.scss"
 import TagsFilter from "../../Components/TagsFilter/TagsFilter";
@@ -31,13 +31,13 @@ const getBase64 = (file) =>
     reader.onerror = (error) => reject(error);
   });
 
-function LandingPage({ platform }) {
+function LandingPage({ platform, setHideIntroPage }) {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [urlSearchInput, setUrlSearchInput] = useState("");
   const [description, setDescription] = useState("");
   const [recommendationNumber, setRecommendationNumber] = useState(3);
-  const [wordsLimit, setWordsLimit] = useState(300);
+  const [wordsLimit, setWordsLimit] = useState(200);
   const [language, setLanguage] = useState("en");
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
@@ -71,11 +71,9 @@ function LandingPage({ platform }) {
   };
   const handleChange = async ({ fileList: newFileList }) => {
     setFileList(newFileList)
-    console.log(newFileList)
     const formData = new FormData();
     formData.append('file', newFileList[0].originFileObj);
     const responseUrl = await uploadImage(formData)
-    console.log(responseUrl)
     setUploadedImageUrl(responseUrl)
 
 
@@ -127,7 +125,6 @@ function LandingPage({ platform }) {
         imageUrl = urlSearchInput
       } else imageUrl = ""
       const response = await generatePost(imageUrl, description, recommendationNumber, wordsLimit, language, platform.toUpperCase())
-      console.log(response);
       setSearchResults(response)
       setResultLoading(false)
 
@@ -141,22 +138,32 @@ function LandingPage({ platform }) {
     return <FullScreenLoader showLoader={isLoading} />;
   }
 
+  function copyToClipboard(text) {
+  const input = document.createElement('input');
+  input.setAttribute('value', text);
+  document.body.appendChild(input);
+  input.select();
+  document.execCommand('copy');
+  document.body.removeChild(input);
+}
+
+
   const getPlatformArr = () => {
     let arr;
-    if (platform === "Twitter") {
-      arr = [100, 200, 300]
+    if (platform === "twitter") {
+      arr = [100, 200, 280]
     } else arr = [100, 200, 300, 400, 500];
 
     return arr;
   }
 
-  console.log(searchResults);
   return (
     <>
       <div className="background-main" style={{ justifyContent: contentPosition }}>
         <Box className="background-content">
           <NavBar />
           <Box className="landing-page-body">
+
             <Box>
               <InputField
                 inputLabel="Enter Image Url"
@@ -251,6 +258,10 @@ function LandingPage({ platform }) {
                   onClick={() => handleShowResults()}
                   disabled={description.length === 0}
                 />
+                <InvertedPrimaryButton
+                  label="Change Platform"
+                  onClick={() => setHideIntroPage(false)}
+                />
               </Box>
             </Box>
           </Box>
@@ -269,7 +280,7 @@ function LandingPage({ platform }) {
               {searchResults.map((recommendation) => {
                 return (
                   <Box className="recommendation" onClick={() => {
-                    navigator.clipboard.writeText(recommendation)
+                    copyToClipboard(recommendation)
                     message.success({
                       content: "Copied to clipboard",
                       style: {

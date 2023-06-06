@@ -75,7 +75,7 @@ function IntroPage() {
         </Box>
       </Box>}
       {
-        platform && hideIntroPage && <LandingPage platform={platform} />
+        platform && hideIntroPage && <LandingPage platform={platform} setHideIntroPage={setHideIntroPage} />
       }
     </>
   );

@@ -5,5 +5,4 @@ import IntroPage from "./IntroPage/IntroPage";
 export {
   LandingPage,
   IntroPage,
-
 };
