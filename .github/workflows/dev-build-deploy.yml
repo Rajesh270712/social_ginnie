@@ -19,7 +19,7 @@ jobs:
       - name: Installing dependencies
         run: npm install --legacy-peer-deps
       - name: Building project
-        run: npm run build --legacy-peer-deps
+        run: CI=false npm run build --legacy-peer-deps
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
