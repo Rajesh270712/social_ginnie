@@ -112,7 +112,7 @@ function LandingPage({ platform, setHideIntroPage }) {
         imageUrl = urlSearchInput
       } else imageUrl = ""
       const response = await generatePost(imageUrl, description, recommendationNumber, wordsLimit, language, platform.toUpperCase())
-      response===undefined ? setShowError(true) : setSearchResults(response);
+      response === undefined ? setShowError(true) : setSearchResults(response);
       setResultLoading(false)
 
 
@@ -263,8 +263,9 @@ function LandingPage({ platform, setHideIntroPage }) {
             <Skeleton key={3} variant="rounded" width={"100%"} height={120} />
             <Skeleton key={4} variant="rounded" width={"100%"} height={120} />
           </Box>}
+        
           {searchResults && <Box>
-            {(uploadedImageUrl || urlSearchInput ) && !showError && <img src={uploadedImageUrl ? uploadedImageUrl : urlSearchInput} />}
+            {(uploadedImageUrl || urlSearchInput) && !showError && <img src={uploadedImageUrl ? uploadedImageUrl : urlSearchInput} />}
             <Box className="result-text">
               {searchResults.map((recommendation) => {
                 return (
@@ -283,6 +284,10 @@ function LandingPage({ platform, setHideIntroPage }) {
                   </Box>
                 )
               })}
+
+                {!showError && searchResults && !resultLoading && <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
+            <button className="publish-but" disabled={true}>Publish using Phyllo  </button>
+          </Box>}
 
               {showError &&
                 <Box className="error-screen" >
