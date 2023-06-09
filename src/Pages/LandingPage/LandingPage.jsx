@@ -38,7 +38,7 @@ function LandingPage({ platform, setHideIntroPage }) {
   const [description, setDescription] = useState("");
   const [recommendationNumber, setRecommendationNumber] = useState(3);
   const [wordsLimit, setWordsLimit] = useState(200);
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState("English");
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const [previewTitle, setPreviewTitle] = useState('');
@@ -48,20 +48,9 @@ function LandingPage({ platform, setHideIntroPage }) {
   const [contentPosition, setContentPosition] = useState("center")
   const [resultLoading, setResultLoading] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
+  const [showError, setShowError] = useState(false);
 
   const handlePreview = async (file) => {
-    const isPNG = file.type === 'image/png';
-    if (!isPNG) {
-      message.error({
-        content: "Please select only PNG image!",
-        style: {
-          marginTop: "5vh",
-        },
-        duration: 1.5,
-        maxCount: 1,
-      })
-      return isPNG || Upload.LIST_IGNORE;
-    }
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
     }
@@ -75,9 +64,6 @@ function LandingPage({ platform, setHideIntroPage }) {
     formData.append('file', newFileList[0].originFileObj);
     const responseUrl = await uploadImage(formData)
     setUploadedImageUrl(responseUrl)
-
-
-
   };
   const uploadButton = (
     <div style={{ width: "100%" }}>
@@ -115,6 +101,7 @@ function LandingPage({ platform, setHideIntroPage }) {
 
   const handleShowResults = async () => {
     setResultLoading(true)
+    setShowError(false)
     setContentPosition("flex-start")
     setSearchResults([])
     try {
@@ -125,11 +112,13 @@ function LandingPage({ platform, setHideIntroPage }) {
         imageUrl = urlSearchInput
       } else imageUrl = ""
       const response = await generatePost(imageUrl, description, recommendationNumber, wordsLimit, language, platform.toUpperCase())
-      setSearchResults(response)
+      response===undefined ? setShowError(true) : setSearchResults(response);
       setResultLoading(false)
 
 
     } catch (error) {
+      setShowError(true)
+      setResultLoading(false)
 
     }
   }
@@ -139,13 +128,13 @@ function LandingPage({ platform, setHideIntroPage }) {
   }
 
   function copyToClipboard(text) {
-  const input = document.createElement('input');
-  input.setAttribute('value', text);
-  document.body.appendChild(input);
-  input.select();
-  document.execCommand('copy');
-  document.body.removeChild(input);
-}
+    const input = document.createElement('input');
+    input.setAttribute('value', text);
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand('copy');
+    document.body.removeChild(input);
+  }
 
 
   const getPlatformArr = () => {
@@ -248,7 +237,7 @@ function LandingPage({ platform, setHideIntroPage }) {
                     onChange={(event) => setLanguage(event.target.value)}
                   >
                     {languages.map((value) => (
-                      <MenuItem value={value.code}>{value.name}</MenuItem>
+                      <MenuItem value={value.name}>{value.name}</MenuItem>
                     ))}
                   </Select>
                 </FormControl>
@@ -275,7 +264,7 @@ function LandingPage({ platform, setHideIntroPage }) {
             <Skeleton key={4} variant="rounded" width={"100%"} height={120} />
           </Box>}
           {searchResults && <Box>
-            {(uploadedImageUrl || urlSearchInput) && <img src={uploadedImageUrl ? uploadedImageUrl : urlSearchInput} />}
+            {(uploadedImageUrl || urlSearchInput ) && !showError && <img src={uploadedImageUrl ? uploadedImageUrl : urlSearchInput} />}
             <Box className="result-text">
               {searchResults.map((recommendation) => {
                 return (
@@ -294,6 +283,13 @@ function LandingPage({ platform, setHideIntroPage }) {
                   </Box>
                 )
               })}
+
+              {showError &&
+                <Box className="error-screen" >
+                  <h1>Oops! Something went wrong</h1>
+                  <p>We apologize for the inconvenience. Please try again later or choose a different image.</p>
+                </Box>
+              }
             </Box>
           </Box>}
         </Box>}
