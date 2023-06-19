@@ -64,7 +64,7 @@ function IntroPage() {
           />
           <PlatformIconBox icon={<Icons.linkedin_logo />}
           key={4}
-            text={"LinkdIn"}
+            text={"LinkedIn"}
             onClickPlatform={()=>handlePlatformClick("Linkedin")}
           />
           <PlatformIconBox icon={<Icons.youtubeIcon />}

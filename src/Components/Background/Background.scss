@@ -32,8 +32,9 @@
 
 @media screen and (max-width: 630px) {
   .background-main {
-    position: relative;
-  }
+  flex-direction: column;
+
+}
 
   .background-content {
     position: relative;

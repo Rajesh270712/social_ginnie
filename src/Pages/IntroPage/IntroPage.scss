@@ -47,4 +47,30 @@
   justify-content: center;
   gap: 8%;
   width: 100%;
+  flex-wrap: wrap;
+}
+
+// add media query
+@media screen and (max-width: 630px) {
+  .intro-page-body {
+  height: 1000px;
+
+  h1 {
+    font-size: 22px;
+    line-height: 50px;
+    margin: 91px auto 18px;
+    width: 100%;
+    letter-spacing: normal;
+
+  }
+}
+
+.platform-main-container {
+  gap: 10px;
+  top: 57%;
+}
+
+.Typewriter__wrapper {
+  font-size: 34px;
+}
 }

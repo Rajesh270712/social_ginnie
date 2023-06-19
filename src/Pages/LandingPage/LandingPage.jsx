@@ -18,7 +18,7 @@ import { languages } from "../../utils/constants";
 import { Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { Modal, Upload } from 'antd';
-import { Skeleton } from "@mui/material";
+import { Skeleton, useMediaQuery } from "@mui/material";
 import { generatePost, uploadImage } from "../../utils/api";
 import ColumnGroup from "antd/es/table/ColumnGroup";
 const { TextArea } = Input;
@@ -49,6 +49,8 @@ function LandingPage({ platform, setHideIntroPage }) {
   const [resultLoading, setResultLoading] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [showError, setShowError] = useState(false);
+  // const matches = useMediaQuery("(max-width:630px)");
+  const matches = true
 
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
@@ -104,6 +106,7 @@ function LandingPage({ platform, setHideIntroPage }) {
     setShowError(false)
     setContentPosition("flex-start")
     setSearchResults([])
+    matches && window.scrollTo(0, 700)
     try {
       let imageUrl;
       if (uploadedImageUrl) {
@@ -112,10 +115,9 @@ function LandingPage({ platform, setHideIntroPage }) {
         imageUrl = urlSearchInput
       } else imageUrl = ""
       const response = await generatePost(imageUrl, description, recommendationNumber, wordsLimit, language, platform.toUpperCase())
+      matches && window.scrollTo(0, 1500)
       response === undefined ? setShowError(true) : setSearchResults(response);
       setResultLoading(false)
-
-
     } catch (error) {
       setShowError(true)
       setResultLoading(false)
@@ -152,7 +154,6 @@ function LandingPage({ platform, setHideIntroPage }) {
         <Box className="background-content">
           <NavBar />
           <Box className="landing-page-body">
-
             <Box>
               <InputField
                 inputLabel="Enter Image Url"
@@ -163,7 +164,6 @@ function LandingPage({ platform, setHideIntroPage }) {
                 }}
                 autoFocus
               />
-
               <Box className="upload-container">
                 <Upload
                   action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
@@ -263,9 +263,8 @@ function LandingPage({ platform, setHideIntroPage }) {
             <Skeleton key={3} variant="rounded" width={"100%"} height={120} />
             <Skeleton key={4} variant="rounded" width={"100%"} height={120} />
           </Box>}
-        
           {searchResults && <Box>
-            {(uploadedImageUrl || urlSearchInput) && !showError && <img src={uploadedImageUrl ? uploadedImageUrl : urlSearchInput} />}
+            {(uploadedImageUrl || urlSearchInput) && !showError && !resultLoading && <img src={uploadedImageUrl ? uploadedImageUrl : urlSearchInput} />}
             <Box className="result-text">
               {searchResults.map((recommendation) => {
                 return (
@@ -285,9 +284,9 @@ function LandingPage({ platform, setHideIntroPage }) {
                 )
               })}
 
-                {!showError && searchResults && !resultLoading && <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
-            <button className="publish-but" disabled={true}>Publish using Phyllo  </button>
-          </Box>}
+              {!showError && searchResults && !resultLoading && <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
+                <PrimaryButton disabled={true} label={"Publish using Phyllo"} />
+              </Box>}
 
               {showError &&
                 <Box className="error-screen" >
@@ -298,7 +297,6 @@ function LandingPage({ platform, setHideIntroPage }) {
             </Box>
           </Box>}
         </Box>}
-
       </div>
     </>
   );

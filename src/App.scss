@@ -3,3 +3,11 @@ body {
   margin: 0px;
   background: #E5E5E5;
 }
+
+
+// add media query
+@media screen and (max-width: 630px) {
+body {
+  background: #FFFF;
+}
+}
